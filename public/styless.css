@@ -10,6 +10,30 @@ body {
   h1, h2, h3 {
     font-family: 'Roboto', sans-serif;
   }
+
+  .text-white {
+    color: white;
+  }
+  
+  .p-6 {
+    padding: 1.5rem;
+  }
+  
+  .text-lg {
+    font-size: 1.125rem;
+  }
+  
+  .text-3xl {
+    font-size: 2rem;
+  }
+  
+  .font-bold {
+    font-weight: 700;
+  }
+  
+  .mt-4 {
+    margin-top: 1rem;
+  }
   
   /* Navbar Styles */
   .nav-box {

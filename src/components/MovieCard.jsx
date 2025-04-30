@@ -1,15 +1,15 @@
+import { Link } from "react-router-dom";
+
 function MovieCard({ movie }) {
-    return (
-      <div className="border p-2 rounded shadow hover:shadow-lg">
-        <img
-          src={movie.Poster !== "N/A" ? movie.Poster : "https://via.placeholder.com/300x450?text=No+Image"}
-          alt={movie.Title}
-          className="w-full h-60 object-cover mb-2"
-        />
-        <h2 className="text-md font-semibold">{movie.Title}</h2>
-        <p className="text-sm text-gray-600">{movie.Year}</p>
+  return (
+    <Link to={`/about/${movie.imdbID}`}>
+      <div className="bg-gray-900 p-4 rounded-md shadow-md hover:shadow-lg cursor-pointer transition">
+        <img src={movie.Poster} alt={movie.Title} className="w-full h-auto rounded mb-2" />
+        <h3 className="text-lg font-semibold text-white">{movie.Title}</h3>
+        <p className="text-gray-400">{movie.Year}</p>
       </div>
-    );
-  }
-  
-  export default MovieCard;
+    </Link>
+  );
+}
+
+export default MovieCard;

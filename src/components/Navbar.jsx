@@ -21,6 +21,9 @@ function Navbar() {
           <Link to="/search" className="text-lg hover:text-gold-300">
             Find Movie
           </Link>
+          <Link to="/about" className="text-lg hover:text-gold-300">
+            About
+          </Link>
         </div>
       </div>
     </nav>
