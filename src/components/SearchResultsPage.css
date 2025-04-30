@@ -119,3 +119,14 @@
     height: 200px; /* Reduced height */
     object-fit: cover; /* Maintain aspect ratio of the image */
   }
+
+  h1.Title {
+    font-size: 4rem; /* Adjust the size to your preference */
+    font-weight: bold; /*  makes the title bold */
+    text-align: center; /* Centers the title */
+    color: #f1c40f; /* Gold color for emphasis */
+    margin-bottom: 1.5rem; /* Adds space below the title */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Optional: Adds a subtle shadow effect */
+  }
+
+  

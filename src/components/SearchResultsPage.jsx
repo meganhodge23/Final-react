@@ -2,11 +2,36 @@ import { useEffect, useState } from "react";
 import MovieCard from "../components/MovieCard";
 
 function SearchResultsPage() {
-  const [input, setInput] = useState("");     // Text in the search bar
-  const [query, setQuery] = useState("");     // Triggers API request
+  const [input, setInput] = useState("");
+  const [query, setQuery] = useState("");
   const [movies, setMovies] = useState([]);
+  const [genre, setGenre] = useState("All");
 
-  // Fetch movies when `query` changes
+  const genres = [
+    "All",
+    "Action",
+    "Adventure",
+    "Animation",
+    "Biography",
+    "Comedy",
+    "Crime",
+    "Documentary",
+    "Drama",
+    "Family",
+    "Fantasy",
+    "History",
+    "Horror",
+    "Music",
+    "Musical",
+    "Mystery",
+    "Romance",
+    "Sci-Fi",
+    "Sport",
+    "Thriller",
+    "War",
+    "Western",
+  ];
+
   useEffect(() => {
     const fetchMovies = async () => {
       if (!query) return;
@@ -14,8 +39,16 @@ function SearchResultsPage() {
       try {
         const response = await fetch(`https://www.omdbapi.com/?apikey=2b045dad&s=${query}`);
         const data = await response.json();
+
         if (data.Search) {
-          setMovies(data.Search);
+          // Fetch detailed info for each movie
+          const detailedMovies = await Promise.all(
+            data.Search.map(async (movie) => {
+              const res = await fetch(`https://www.omdbapi.com/?apikey=2b045dad&i=${movie.imdbID}`);
+              return res.json();
+            })
+          );
+          setMovies(detailedMovies);
         } else {
           setMovies([]);
         }
@@ -27,19 +60,22 @@ function SearchResultsPage() {
     fetchMovies();
   }, [query]);
 
-  // Called when search is submitted
   const handleSearch = () => {
     if (input.trim()) {
       setQuery(input);
     }
   };
 
+  const filteredMovies = genre === "All"
+    ? movies
+    : movies.filter((movie) => movie.Genre && movie.Genre.includes(genre));
+
   return (
-    <div className="p-6 text-white bg-black min-h-screen font-roboto">
-      <h1 className="text-3xl font-bold mb-6 text-center text-yellow-400">Find a Movie</h1>
+    <div className="p-6 text-black bg-black min-h-screen font-roboto">
+      <h1 className="full-width-title">Find a Movie</h1>
 
       {/* Search Bar */}
-      <div className="flex justify-center mb-8">
+      <div className="search-box-container">
         <input
           type="text"
           value={input}
@@ -56,16 +92,33 @@ function SearchResultsPage() {
         </button>
       </div>
 
+      {/* Genre Filter */}
+      <div className="search-box-container">
+        <label htmlFor="genre" className="mr-2">Filter by genre:</label>
+        <select
+          id="genre"
+          value={genre}
+          onChange={(e) => setGenre(e.target.value)}
+          className="bg-gray-800 text-black px-4 py-2 rounded"
+        >
+          {genres.map((g) => (
+            <option key={g} value={g}>
+              {g}
+            </option>
+          ))}
+        </select>
+      </div>
+
       {/* Movie Results */}
       {query && (
         <h2 className="text-xl font-semibold mb-4 text-center">
-          Results for "{query}"
+          Results for "{query}" {genre !== "All" && `in ${genre}`}
         </h2>
       )}
 
-      {movies.length > 0 ? (
+      {filteredMovies.length > 0 ? (
         <div className="movie-card-container">
-          {movies.map((movie) => (
+          {filteredMovies.map((movie) => (
             <MovieCard key={movie.imdbID} movie={movie} />
           ))}
         </div>

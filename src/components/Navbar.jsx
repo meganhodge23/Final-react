@@ -9,23 +9,51 @@ function Navbar() {
   };
 
   return (
-    <nav className="p-6 bg-black text-white">
+    <nav className="bg-black text-white px-6 py-4 relative">
       <div className="flex justify-between items-center">
-        <button className="text-3xl" onClick={toggleMenu}>
-          ☰ Menu
+        <h1 className="text-xl font-bold text-gold-400">MovieApp</h1>
+        <button
+          className="text-3xl text-gold-400 hover:text-white focus:outline-none"
+          onClick={toggleMenu}
+        >
+          ☰ MENU
         </button>
-        <div className={`nav-menu ${menuVisible ? "block" : "hidden"} space-x-6`}>
-          <Link to="/" className="text-lg hover:text-gold-300">
-            Home
-          </Link>
-          <Link to="/search" className="text-lg hover:text-gold-300">
-            Find Movie
-          </Link>
-          <Link to="/about" className="text-lg hover:text-gold-300">
-            About
-          </Link>
-        </div>
       </div>
+
+      {/* Dropdown Menu */}
+      {menuVisible && (
+        <div className="absolute right-6 top-16 bg-gray-900 rounded-md shadow-md border border-gold-400 w-48 z-50">
+          <ul className="flex flex-col text-center py-2">
+            <li>
+              <Link
+                to="/"
+                className="block px-4 py-2 hover:bg-gold-400 hover:text-black transition"
+                onClick={() => setMenuVisible(false)}
+              >
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/search"
+                className="block px-4 py-2 hover:bg-gold-400 hover:text-black transition"
+                onClick={() => setMenuVisible(false)}
+              >
+                Find Movie
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/about"
+                className="block px-4 py-2 hover:bg-gold-400 hover:text-black transition"
+                onClick={() => setMenuVisible(false)}
+              >
+                About
+              </Link>
+            </li>
+          </ul>
+        </div>
+      )}
     </nav>
   );
 }
