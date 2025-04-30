@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./HomePage.css"; // Ensure you import the CSS
+import "./HomePage.css"; // Make sure this includes your star animation styles
 
 function HomePage() {
   const [stars, setStars] = useState([]);
+  const [input, setInput] = useState("");
   const navigate = useNavigate();
 
   const generateStars = (num) => {
@@ -24,11 +25,18 @@ function HomePage() {
     setStars(generatedStars);
   }, []);
 
+  const handleSearch = () => {
+    if (input.trim()) {
+      navigate(`/search?query=${encodeURIComponent(input)}`);
+    }
+  };
+
   return (
     <div
       className="home-container bg-cover bg-center bg-no-repeat text-white"
       style={{
-        backgroundImage: "url('https://images.unsplash.com/photo-1581905764498-7b7b55ecd2da?auto=format&fit=crop&w=1400&q=80')",
+        backgroundImage:
+          "url('https://images.unsplash.com/photo-1581905764498-7b7b55ecd2da?auto=format&fit=crop&w=1400&q=80')",
       }}
     >
       <div className="stars-container">
@@ -47,10 +55,27 @@ function HomePage() {
           />
         ))}
       </div>
+      <div className="bg-black bg-opacity-80 p-12">
+        <h1 className="full-width-title">Movie Explorer</h1>
+        <p className="full-width-subtitle">Explore movies in style!</p>
 
-      <div className="bg-black bg-opacity-80 p-12 text-center">
-        <h1 className="text-6xl font-bold text-gold-500 mb-4">Movie Explorer</h1>
-        <p className="text-2xl text-gold-300 mb-8">Explore movies in style!</p>
+        {/* Search Bar */}
+        <div className="search-box-container">
+          <input
+            type="text"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyDown={(e) => e.key === "Enter" && handleSearch()}
+            placeholder="Search for a movie..."
+            className="w-full max-w-md p-2 rounded-l-md bg-gray-800 text-black focus:outline-none"
+          />
+          <button
+            onClick={handleSearch}
+            className="search-button"
+          >
+            Search
+          </button>
+        </div>
       </div>
     </div>
   );

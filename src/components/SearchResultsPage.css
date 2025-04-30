@@ -40,6 +40,18 @@
     margin-left: 10px;
     box-shadow: 0 0 15px rgba(241, 196, 15, 0.4); /* Subtle glowing effect */
   }
+
+  .search-results-container {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping of items */
+    justify-content: center; /* Center the results horizontally */
+    gap: 20px; /* Space between movie cards */
+    margin-top: 30px; /* Space from the search bar */
+    padding: 0 20px; /* Padding to prevent content from touching the sides */
+    max-width: 50%; /* Ensure the container takes up only half the page */
+    margin: 0 auto; /* Center the results container */
+    overflow-y: auto;  /* Allows vertical scrolling */
+  }
   
   /* Hover Effect on Button */
   .search-box button:hover {
@@ -63,4 +75,47 @@
       opacity: 1;
       transform: translateY(0);
     }
+  }
+
+  /* Hover effect for movie cards */
+.movie-card:hover {
+    transform: translateY(-5px); /* Lift effect */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); /* Stronger shadow */
+  }
+  
+  /* Movie poster image */
+  .movie-card {
+    width: 200px; /* Set the card width */
+    min-height: 350px; /* Set a minimum height for each card */
+    background-color: rgba(0, 0, 0, 0.7); /* Dark background for the card */
+    border-radius: 10px; /* Rounded corners for a smooth look */
+    overflow: hidden; /* Hide overflow to maintain clean card edges */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6); /* Subtle shadow effect */
+    transition: transform 0.3s ease-in-out; /* Smooth hover effect */
+  }
+  
+  /* Movie title text */
+  .movie-card .movie-title {
+    font-size: 1rem;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+    padding: 8px;
+  }
+
+  .movie-card-container {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping of items */
+    justify-content: center; /* Center the results horizontally */
+    gap: 20px; /* Space between movie cards */
+    margin-top: 30px; /* Space from the search bar */
+    padding: 0 20px; /* Padding to prevent content from touching the sides */
+    max-width: 80%; /* Adjust to take up only 80% of the page width */
+    margin: 0 auto; /* Center the results container */
+  }
+
+  .Movie-Card img {
+    width: 100%;
+    height: 200px; /* Reduced height */
+    object-fit: cover; /* Maintain aspect ratio of the image */
   }

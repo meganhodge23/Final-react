@@ -64,7 +64,7 @@ function SearchResultsPage() {
       )}
 
       {movies.length > 0 ? (
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="movie-card-container">
           {movies.map((movie) => (
             <MovieCard key={movie.imdbID} movie={movie} />
           ))}
