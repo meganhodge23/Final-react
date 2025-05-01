@@ -10,7 +10,7 @@ function Navbar() {
 
   return (
     <nav className="bg-black text-white px-6 py-4 relative">
-      <div className="flex justify-between items-center">
+      <div className="nav__wrapper">
         <h1 className="text-xl font-bold text-gold-400">MovieApp</h1>
         <button
           className="text-3xl text-gold-400 hover:text-white focus:outline-none"
