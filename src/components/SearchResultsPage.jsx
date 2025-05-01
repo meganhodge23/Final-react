@@ -60,7 +60,7 @@ function SearchResultsPage() {
   });
 
   return (
-    <div className="p-6 bg-black text-white min-h-screen font-roboto">
+    <div className="p-6 bg-black text-black min-h-screen font-roboto">
       <h1 className="text-3xl font-bold text-center text-yellow-500 mb-6">Find a Movie</h1>
 
       {/* Search Bar */}
@@ -71,7 +71,7 @@ function SearchResultsPage() {
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && handleSearch()}
           placeholder="Search for a movie..."
-          className="w-full max-w-md p-2 rounded-l-md bg-gray-800 text-white focus:outline-none"
+          className="w-full max-w-md p-2 rounded-l-md bg-gray-800 text-black focus:outline-none"
         />
         <button
           onClick={handleSearch}
@@ -89,7 +89,7 @@ function SearchResultsPage() {
             id="genre"
             value={genre}
             onChange={(e) => setGenre(e.target.value)}
-            className="bg-gray-800 text-white px-4 py-2 rounded"
+            className="bg-gray-800 text-black px-4 py-2 rounded"
           >
             {genres.map((g) => (
               <option key={g} value={g}>{g}</option>
@@ -103,7 +103,7 @@ function SearchResultsPage() {
             id="sortOrder"
             value={sortOrder}
             onChange={(e) => setSortOrder(e.target.value)}
-            className="bg-gray-800 text-white px-4 py-2 rounded"
+            className="bg-gray-800 text-black px-4 py-2 rounded"
           >
             <option value="Newest">Newest to Oldest</option>
             <option value="Oldest">Oldest to Newest</option>
