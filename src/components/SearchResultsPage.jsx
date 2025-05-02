@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import MovieCard from "../components/MovieCard";
-import "./SearchResultsPage.css"
+import "./SearchResultsPage.css";
 
 function SearchResultsPage() {
-  const [input, setInput] = useState("");
-  const [query, setQuery] = useState("");
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const query = queryParams.get("query"); // Get the query from the URL
+
+  const [input, setInput] = useState(query || ""); // Pre-populate with query from URL
   const [movies, setMovies] = useState([]);
   const [genre, setGenre] = useState("All");
   const [sortOrder, setSortOrder] = useState("Newest");
@@ -44,7 +48,8 @@ function SearchResultsPage() {
 
   const handleSearch = () => {
     if (input.trim()) {
-      setQuery(input);
+      // If there's an input, navigate to the search results page
+      window.location.href = `/search?query=${encodeURIComponent(input)}`;
     }
   };
 
@@ -62,10 +67,9 @@ function SearchResultsPage() {
 
   return (
     <div className="title">
-      {/* Full-width Title */}
       <h1 className="full-width-title">Find a Movie</h1>
 
-      {/* Full-width Search Bar */}
+      {/* Search Bar */}
       <div className="search-box">
         <input
           type="text"
@@ -120,7 +124,7 @@ function SearchResultsPage() {
         </h2>
       )}
 
-      {/* Scrollable Movie Results */}
+      {/* Movie Results */}
       {sortedMovies.length > 0 ? (
         <div className="scrollable-movie-grid">
           {sortedMovies.map((movie) => (
