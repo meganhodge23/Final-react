@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import MovieCard from "../components/MovieCard";
+import "./SearchResultsPage.css"
 
 function SearchResultsPage() {
   const [input, setInput] = useState("");
@@ -60,29 +61,30 @@ function SearchResultsPage() {
   });
 
   return (
-    <div className="p-6 bg-black text-black min-h-screen font-roboto">
-      <h1 className="text-3xl font-bold text-center text-yellow-500 mb-6">Find a Movie</h1>
+    <div className="title">
+      {/* Full-width Title */}
+      <h1 className="full-width-title">Find a Movie</h1>
 
-      {/* Search Bar */}
-      <div className="flex flex-wrap items-center justify-center gap-4 mb-4">
+      {/* Full-width Search Bar */}
+      <div className="search-box">
         <input
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && handleSearch()}
           placeholder="Search for a movie..."
-          className="w-full max-w-md p-2 rounded-l-md bg-gray-800 text-black focus:outline-none"
+          className="w-full sm:w-3/4 p-3 rounded-l-md bg-gray-800 text-black focus:outline-none"
         />
         <button
           onClick={handleSearch}
-          className="bg-yellow-500 text-black px-4 py-2 rounded-r-md hover:shadow-[0_0_10px_rgba(255,215,0,0.7)] transition"
+          className="w-full sm:w-auto bg-yellow-500 text-black px-4 py-3 rounded-r-md hover:shadow-[0_0_10px_rgba(255,215,0,0.7)] transition"
         >
           Search
         </button>
       </div>
 
       {/* Genre & Sort Filters */}
-      <div className="flex flex-wrap justify-center gap-4 mb-6">
+      <div className="genre-box">
         <div className="flex items-center">
           <label htmlFor="genre" className="mr-2">Genre:</label>
           <select
@@ -97,7 +99,7 @@ function SearchResultsPage() {
           </select>
         </div>
 
-        <div className="flex items-center">
+        <div className="year-box">
           <label htmlFor="sortOrder" className="mr-2">Sort by year:</label>
           <select
             id="sortOrder"
@@ -113,14 +115,14 @@ function SearchResultsPage() {
 
       {/* Results Title */}
       {query && (
-        <h2 className="text-xl font-semibold mb-4 text-center">
+        <h2 className="results-container">
           Results for "{query}" {genre !== "All" && `in ${genre}`} ({sortedMovies.length})
         </h2>
       )}
 
-      {/* Movie Cards Grid */}
+      {/* Scrollable Movie Results */}
       {sortedMovies.length > 0 ? (
-        <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        <div className="scrollable-movie-grid">
           {sortedMovies.map((movie) => (
             <div key={movie.imdbID} className="w-full">
               <MovieCard movie={movie} />

@@ -1,9 +1,4 @@
 /* Search Bar Styles */
-.search-box {
-    text-align: center;
-    margin-top: 30px;
-    animation: slideIn 0.5s ease-out;
-  }
   
   /* Search Input Box */
   .search-box input {
@@ -120,7 +115,7 @@
     object-fit: cover; /* Maintain aspect ratio of the image */
   }
 
-  h1.Title {
+  .Title {
     font-size: 4rem; /* Adjust the size to your preference */
     font-weight: bold; /*  makes the title bold */
     text-align: center; /* Centers the title */
@@ -129,4 +124,23 @@
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Optional: Adds a subtle shadow effect */
   }
 
-  
+  /* year */
+  .year-box {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
+  animation: slideIn 0.5s ease-out;
+  }
+
+  .scrollable-movie-grid {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    padding: 0 20px;
+    max-height: 85vh;       /* Limit height */
+    overflow-y: auto;        /* Enable vertical scroll */
+    margin-top: 30px;
+    box-sizing: border-box; /* Ensure padding doesn't exceed max height */
+    scroll-padding-bottom: 60px;
+  }

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./HomePage.css"; // Make sure this includes your star animation styles
+import "./HomePage.css";
 
 function HomePage() {
   const [stars, setStars] = useState([]);
@@ -58,8 +58,6 @@ function HomePage() {
       <div className="bg-black bg-opacity-80 p-12">
         <h1 className="full-width-title">Movie Explorer</h1>
         <p className="full-width-subtitle">Explore movies in style!</p>
-
-        {/* Search Bar */}
         <div className="search-box-container">
           <input
             type="text"
