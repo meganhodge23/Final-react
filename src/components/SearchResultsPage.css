@@ -84,7 +84,7 @@
     min-height: 350px; /* Set a minimum height for each card */
     background-color: rgba(0, 0, 0, 0.7); /* Dark background for the card */
     border-radius: 10px; /* Rounded corners for a smooth look */
-    overflow: hidden; /* Hide overflow to maintain clean card edges */
+     /* Hide overflow to maintain clean card edges */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6); /* Subtle shadow effect */
     transition: transform 0.3s ease-in-out; /* Smooth hover effect */
   }
@@ -143,4 +143,5 @@
     margin-top: 30px;
     box-sizing: border-box; /* Ensure padding doesn't exceed max height */
     scroll-padding-bottom: 60px;
+    scroll-behavior: smooth;
   }
